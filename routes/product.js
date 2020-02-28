@@ -3,7 +3,7 @@ const express = require('express');
  const mysql = require('mysql');
  const datb = require('../database/database');
 
-router.post('/b', (req, res) => {
+router.post('/enterProduct', (req, res) => {
     let prod = {
         product_name: req.body.product_name,
         product_price: req.body.product_price,
@@ -20,5 +20,18 @@ router.post('/b', (req, res) => {
                  }
              })
 });
+
+router.get('/viewProduct',(req,res)=>{
+
+
+    datb.query('select * from products ',(error,result)=>{
+        if(error) throw error
+        else 
+        {
+           return res.send({data:results});
+        }
+    })
+
+    });
 
 module.exports = router;
