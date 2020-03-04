@@ -22,7 +22,6 @@ app.use(function (req, res, next) {
 
  app.use('/', require('./routes/login'));
  app.use('/', require('./routes/registration'));
- app.use('/', require('./routes/admin'));
  app.use('/', require('./routes/customer'));
  app.use('/', require('./routes/restuarant'));
  app.use('/', require('./routes/search'));
