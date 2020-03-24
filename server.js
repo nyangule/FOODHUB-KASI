@@ -28,8 +28,11 @@ app.use(function (req, res, next) {
  app.use('/', require('./routes/customer'));
  app.use('/', require('./routes/restuarant'));
  app.use('/', require('./routes/addOrder'));
+ app.use('/', require('./routes/updateOrder'));
  app.use('/', require('./routes/upload_documents'));
  app.use('/', require('./routes/super_admin'));
+ app.use('/', require('./routes/ViewUpdateHistory'));
+ 
  
 
 // start server
