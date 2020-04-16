@@ -36,13 +36,11 @@
 
 // add orders 
 router.post('/addOrder',function(req,res){
-    var totalAmount = qauntity * price;
     let order ={
         order_id:req.body.order_id,
         cutomer_id:req.body.cutomer_id,
         quantity:req.body.quantity,
-        totalAmount:req.body.totalAmount,
-        order_status:req.body.order_status
+        
     }
     let order_id = req.body.order_id
     datb.query('SELECT * from orders where order_id = ?',[order_id],function(error,results){
