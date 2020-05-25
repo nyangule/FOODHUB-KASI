@@ -65,7 +65,7 @@ router.get('/viewMenu', (req,res)=>{
 
   datb.query('SELECT * FROM  menu ',function(error,results,fields){
 
-      if(error)
+      if(error) 
       {
           res.send({"failed":"error occurred"})
       }
