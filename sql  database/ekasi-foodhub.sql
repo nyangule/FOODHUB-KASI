@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 16, 2020 at 12:13 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.1
+-- Generation Time: Jun 03, 2020 at 12:44 AM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -33,7 +33,7 @@ CREATE TABLE `carts` (
   `name` varchar(55) DEFAULT NULL,
   `price` double DEFAULT NULL,
   `qty` int(255) DEFAULT NULL,
-  `totalAmt` double GENERATED ALWAYS AS (`price` * `qty`) VIRTUAL
+  `totalAmt` double AS (`price` * `qty`) VIRTUAL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -85,7 +85,7 @@ CREATE TABLE `customer` (
   `email_address` varchar(255) NOT NULL,
   `cell_no` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `cust_status` tinyint(1) NOT NULL DEFAULT 1,
+  `cust_status` tinyint(1) NOT NULL DEFAULT '1',
   `images` blob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -110,22 +110,31 @@ CREATE TABLE `menu` (
   `item_id` int(11) NOT NULL,
   `item_name` varchar(255) NOT NULL,
   `item_price` int(11) NOT NULL,
-  `item_description` varchar(255) NOT NULL
+  `item_description` varchar(255) NOT NULL,
+  `itemStatus` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `menu`
 --
 
-INSERT INTO `menu` (`item_id`, `item_name`, `item_price`, `item_description`) VALUES
-(1, 'BBQ Beef', 53, 'beef'),
-(2, 'Beef&Wors', 45, 'Beef wors'),
-(3, 'wors', 60, 'beef wors'),
-(4, 'Full Chicken', 48, 'chicken'),
-(5, 'Chips', 23, 'potato fried chips'),
-(6, 'Kota 1', 33, 'Russians,Cheese,Eggs'),
-(7, 'kota 2', 19, 'Vienna,polony,Garlic'),
-(8, 'kota3', 21, 'Russian,Polony,Garlic');
+INSERT INTO `menu` (`item_id`, `item_name`, `item_price`, `item_description`, `itemStatus`) VALUES
+(1, 'BBQ Beef', 53, 'beef', 'Inactive'),
+(2, 'Beef&Wors', 52, 'Beef wors', ''),
+(3, 'Pap & Meat', 30, 'beef, wors, pap', ''),
+(4, 'Full-Chicken', 48, 'chicken', ''),
+(5, 'Chips', 23, 'potato fried chips', ''),
+(6, 'Kota 1', 53, 'Russians,Cheese,Eggs', ''),
+(8, 'kota3', 25, 'Russian,Polony,Garlic', ''),
+(10, 'Marapo', 15, 'Pap, Marapo, Chakalaka', ''),
+(13, 'kota-22', 20, 'Vienna,polony,Garlic, Achaar', ''),
+(14, 'kota-32', 22, 'Russian,Polony,Garlic', ''),
+(15, 'Maputla', 20, 'Chips, Achaar, Vianna', '1'),
+(33, 'food', 35, 'food', 'Inactive'),
+(34, 'food', 31, 'food', 'Active'),
+(36, 'Milkshake', 45, 'Vanila flavoured covered with sprinkles', 'Inactive'),
+(59, 'Monyama', 41, 'Monyama', ''),
+(60, 'Combo 5', 65, 'Chips, Achaar, Vianna, Russian, Ham burger, 4 Rolls, Chakalaka', '');
 
 -- --------------------------------------------------------
 
@@ -139,8 +148,8 @@ CREATE TABLE `orders` (
   `name` varchar(255) NOT NULL,
   `qty` int(11) NOT NULL,
   `price` double NOT NULL,
-  `totalAmount` double GENERATED ALWAYS AS (`price` * `qty`) VIRTUAL,
-  `order_Status` tinyint(1) NOT NULL DEFAULT 0
+  `totalAmount` double AS (`price` * `qty`) VIRTUAL,
+  `order_Status` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -183,7 +192,7 @@ CREATE TABLE `restuarant_admin` (
   `address` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `email_address` varchar(255) NOT NULL,
-  `rest_status` tinyint(1) NOT NULL DEFAULT 1
+  `rest_status` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -274,7 +283,7 @@ ALTER TABLE `system_admin`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `customer`
@@ -286,7 +295,7 @@ ALTER TABLE `customer`
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -310,7 +319,7 @@ ALTER TABLE `restuarant_admin`
 -- AUTO_INCREMENT for table `system_admin`
 --
 ALTER TABLE `system_admin`
-  MODIFY `system_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=987654322;
+  MODIFY `system_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
