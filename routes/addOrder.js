@@ -3,7 +3,7 @@
  const mysql = require('mysql');
  const datb = require('../database/database');
  
-
+ 
  // view carts for particular order 
  
 router.get('/viewCart/:order_id', (req, res) => {
@@ -26,6 +26,7 @@ router.get('/aViewCart', (req, res) => {
        res.send({results});
    });
 });
+
 
 
 
@@ -62,9 +63,11 @@ router.get('/aViewCart', (req, res) => {
 router.post('/addOrder',function(req,res){
     let order ={
         order_id:req.body.order_id,
-        cutomer_id:req.body.cutomer_id,
-        quantity:req.body.quantity,
-        
+        customer_ID:req.body.customer_ID,
+        name:req.body.name,
+        qty:req.body.qty,
+        price:req.body.price,  
+       
     }
     let order_id = req.body.order_id
     datb.query('SELECT * from orders where order_id = ?',[order_id],function(error,results){
