@@ -10,7 +10,6 @@ router.post ('/application',(req,res)=>{
           restuarant_id:req.body.restuarant_id,
           restuarant_name:req.body.restuarant_name,
           address:req.body.address,
-          password:req.body.password,
           email_address:req.body.email_address
         }
         if(!rest)
@@ -33,13 +32,13 @@ router.post ('/application',(req,res)=>{
         var transporter = nodemailer.createTransport({
           service: 'gmail',
           auth: {
-            user: 'kasifoodhub@gmail.com',
-            pass: '2020#1food'
+            user: 'nyanguleo@gmail.com',
+            pass: 'Oluhle12@2013'
           }
         });
         
         var mailOptions = {
-          from: 'kasifoodhub@gmail.com',
+          from: 'nyanguleo@gmail.com',
           to: rest.email_address,
           subject: 'Ekasi Foodhub',
           text: 'Your application is been approved!'
