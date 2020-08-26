@@ -4,16 +4,17 @@ const mysql = require('mysql');
 const datb = require('../database/database');
 const nodemailer = require('nodemailer');   
 
+
 router.post ('/application',(req,res)=>{
 
-        let rest={
+     let rest={
           restuarant_id:req.body.restuarant_id,
           restuarant_name:req.body.restuarant_name,
           address:req.body.address,
          // dont need password while applying as user logged in already password:req.body.password,
           email_address:req.body.email_address
-        }
-        if(!rest)
+       }
+         if(!rest)
           {
             res.send({'message': 'false'})
           }
@@ -76,18 +77,7 @@ router.get('/viewMenu', (req,res)=>{
   });
 });
 
-// view each specific restaurant menu 
-router.get('/specMenu',(req, res)=> {
 
-  let restuarant ={restuarant_id:req.body.restuarant_id}
-
-  datb.query('SELECT * from menu where restuarant_id = ?',restuarant.restuarant_id,(error,results,fields)=>{
-    if(error) throw error;
-    else{
-      return res.send({'data':results})
-    }
-  })
-});
 // view of menu from the 3 new tables 
 
 router.get('/viewrest1', (req,res)=>{
@@ -139,9 +129,18 @@ router.get('/viewrest3', (req,res)=>{
 });
 
 
+// view each specific restaurant menu 
+router.get('/specMenu',(req, res)=> {
 
+  let restuarant ={restuarant_id:req.body.restuarant_id}
 
-
+  datb.query('SELECT * from menu where restuarant_id = ?',restuarant.restuarant_id,(error,results,fields)=>{
+    if(error) throw error;
+    else{
+      return res.send({'data':results})
+    }
+  })
+});
 
 
 
